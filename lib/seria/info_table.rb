@@ -13,19 +13,11 @@ module Seria
       alias_method :owner, klass_name.downcase.to_sym
 
       before_save :to_db
-      after_commit proc{self.owner.touch}
       attr_reader :in_memory
     end
 
     def convert
-      val =
-          if @in_memory
-            read_attribute(Seria.config.fields.value)
-          else
-            converter.value
-          end
-      @in_memory = true
-      val
+      converter.convert
     end
 
     def converters
@@ -33,7 +25,11 @@ module Seria
     end
 
     def converter
-      (converters[field_name] || converters[field_type] || DefaultConverter).new(self)
+      (converters[field_name] ||
+          converters[field_type] ||
+          DefaultConverter).new(
+          read_attribute(Seria.config.fields.value),
+          read_attribute(Seria.config.fields.type))
     end
 
     def field_name
@@ -43,13 +39,20 @@ module Seria
     def field_value
       convert
     end
+    def field_type
+      read_attribute(Seria.config.fields.type)
+    end
+    def field_type=(val)
+      write_attribute(Seria.config.fields.type, val)
+    end
     def field_value=(val)
       write_attribute(Seria.config.fields.value, val)
     end
 
     def to_db
-      converter.to_db
-      @in_memory = false
+      self.field_value = convert #force cast back from varchar in case not a new entry
+      self.field_type = read_attribute(Seria.config.fields.value).class.to_s
+      self.field_value = converter.to_db
       true
     end
 
