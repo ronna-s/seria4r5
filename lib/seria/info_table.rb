@@ -62,7 +62,9 @@ module Seria
       end
       klass = class_name.constantize
       klass.send(:include, Seria::InfoTable) unless klass.include? Seria::InfoTable
-      klass.send(:attr_accessible, *(Seria.config.fields.marshal_dump.values))
+      if Rails.version =~ /^3/
+        klass.send(:attr_accessible, *(Seria.config.fields.marshal_dump.values))
+      end
     end
 
   end
