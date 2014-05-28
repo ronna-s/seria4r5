@@ -1,5 +1,7 @@
 # Seria
 
+[![Gem Version](https://badge.fury.io/rb/seria.svg)](http://badge.fury.io/rb/seria)
+
 I wrote this gem because I needed to be able to load my ARs with key-value attributes without running migrations,
 in a similar way to [dynamic_attributes](https://github.com/moiristo/dynamic_attributes) gem.
 But I also needed to be able to query the data, so storing it in a JSON wasn't a good enough solution.
