@@ -9,9 +9,6 @@ ActiveRecord::Base.establish_connection(
     encoding: 'utf8',
     database: ":memory:")
 
-class User < ActiveRecord::Base
-  include Seria::InfoTableOwner
-end
 Time.zone = "Berlin"
 describe Seria::DefaultConverter do
 
@@ -24,9 +21,9 @@ describe Seria::DefaultConverter do
       nil => NilClass,
       "cool" => String,
       Date.yesterday => Date,
-      Time.now => Time,
-      DateTime.now => DateTime,
-      Time.zone.now => ActiveSupport::TimeWithZone
+      Time.now.round => Time,
+      Time.now.round.to_datetime => DateTime,
+      #Time.zone.at(Time.now.to_i) => ActiveSupport::TimeWithZone
   }
 
   examples.each do |value, klass|
