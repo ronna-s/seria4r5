@@ -1,10 +1,12 @@
 require "seria/version"
 require "seria/info_table"
 require 'ostruct'
+
 module Seria
   @config = OpenStruct.new
   @config.descriptor = :info
   @config.converters = {}
+  @config.perform_lookup_on_method_missing = false
   @config.fields = OpenStruct.new(
       {
           key: :field_name,

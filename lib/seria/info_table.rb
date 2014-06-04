@@ -104,6 +104,11 @@ module Seria
       alias_method Seria.table_suffix.to_sym, class_name.tableize.to_sym
     end
 
+    def method_missing(sym, *args, &block)
+      info = Seria.config.perform_lookup_on_method_missing && my_infos.lookup(sym)
+      info ? info.field_value : super
+    end
+
     module ClassMethods
 
       def class_name
