@@ -57,7 +57,7 @@ module Seria
     end
 
     def self.define_info_table(class_name)
-      if !eval("defined?(#{class_name}) && #{class_name}.is_a?(Class)")
+      unless defined?(class_name) && class_name.is_a?(Class)
         Object.const_set class_name, Class.new(ActiveRecord::Base)
       end
       klass = class_name.constantize
