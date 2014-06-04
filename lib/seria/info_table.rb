@@ -97,7 +97,7 @@ module Seria
           info.field_value if info
         end
         def lookup key
-          to_a.select{|i| i.field_name == key}.first
+          to_a.select{|i| i.field_name == key.to_s}.first
         end
       end
       alias_method :my_infos, class_name.tableize.to_sym
