@@ -105,8 +105,12 @@ module Seria
     end
 
     def method_missing(sym, *args, &block)
-      info = Seria.config.perform_lookup_on_method_missing && my_infos.lookup(sym)
-      info ? info.field_value : super
+      if sym.to_s =~ /\=$/
+        my_infos[sym.to_s[0..-2]] = args.first
+      else
+        info = Seria.config.perform_lookup_on_method_missing && my_infos.lookup(sym)
+        info ? info.field_value : super
+      end
     end
 
     module ClassMethods
