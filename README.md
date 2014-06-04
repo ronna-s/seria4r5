@@ -37,7 +37,7 @@ Or install it yourself as:
 
 ```ruby
 
-class Book
+class Book < ActiveRecord::Base
   include Seria::InfoTableOwner
 end
 
@@ -52,6 +52,19 @@ book.infos["price"]
 => 100.0
 book.infos["recommended"]
 => true
+
+```
+
+### Or, avoid awkward association syntax and call directly
+
+```ruby
+Seria.configure do |config|
+  config.perform_lookup_on_method_missing = true
+end
+
+book.recommended = false
+book.recommended
+=> false
 
 ```
 
