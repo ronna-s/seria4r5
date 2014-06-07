@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Seria::VERSION
   spec.authors       = ["Ronna"]
   spec.email         = [""]
-  spec.description   = %q{Add dynamic JSON data to active records. Access it like documents. Query it.}
-  spec.summary       = %q{}
+  spec.description   = %q{}
+  spec.summary       = %q{Add dynamic JSON data to active records. Access it like documents. Query it.}
   spec.homepage      = ""
   spec.license       = "MIT"
 
