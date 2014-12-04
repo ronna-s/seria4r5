@@ -52,9 +52,9 @@ book.save
 
 book = Book.last
 book.infos["price"]
-=> 100.0
+# => 100.0
 book.infos["recommended"]
-=> true
+# => true
 
 ```
 
@@ -67,7 +67,7 @@ end
 
 book.recommended = false
 book.recommended
-=> false
+# => false
 
 ```
 
