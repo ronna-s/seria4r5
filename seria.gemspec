@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'seria/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "seria"
+  spec.name          = "seria4r5"
   spec.version       = Seria::VERSION
   spec.authors       = ["Ronna"]
   spec.email         = [""]

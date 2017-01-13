@@ -1,0 +1,9 @@
+  (use "git add <file>..." to update what will be committed)
+Description:
+    Generates info table creation migration for your models.
+
+Example:
+    rails generate info_table Thing
+
+    This will create:
+        db/migrate/<timestamp>_create_thing_infos.rb
